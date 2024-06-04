@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Замена "ё" на "е".</title>
+    <title>Замена "ё" на "е"</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Замена "ё" на "е".</h1>
-    <form method="post">
-        {% csrf_token %}
-        <textarea name="text" rows="10" cols="50"></textarea>
-        <br>
-        <input type="submit" value="Заменить">
-    </form>
-    {% if new_text %}
-        <p>Измененный текст: {{ new_text }}</p>
-    {% endif %}
+    <div class="container mt-5">
+        <h1 class="text-center">Замена "ё" на "е"</h1>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="text">Введите текст:</label>
+                <textarea id="text" name="text" class="form-control" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Заменить</button>
+        </form>
+        {% if new_text %}
+            <div class="mt-4">
+                <h2>Измененный текст:</h2>
+                <p class="alert alert-success">{{ new_text }}</p>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -12,6 +12,9 @@ def index(request):
         # Удаление всех кавычек
         text = text.replace("'", "").replace('"', "")
         
+        # Замена всех слэшей (/) и обратных слэшей (\) на пробелы
+        text = text.replace('/', ' ').replace('\\', ' ')
+        
         # Функция для замены всех заглавных букв на строчные, если слово написано капсом
         def lower_case_if_caps(word):
             return word.lower() if word.isupper() else word
@@ -34,7 +37,8 @@ def index(request):
             # Обрабатываем предложение
             processed_sentence = process_sentence(sentence)
             # Восстанавливаем заглавную букву в начале предложения
-            processed_sentence = processed_sentence[0].upper() + processed_sentence[1:]
+            if processed_sentence:  # Ensure the sentence is not empty
+                processed_sentence = processed_sentence[0].upper() + processed_sentence[1:]
             new_sentences.append(processed_sentence)
         
         # Объединяем предложения обратно в текст
